@@ -1,0 +1,253 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/** end reset css**/
+body {
+  max-width: 1140px;
+  margin: auto;
+  font-family: "Work Sans";
+  font-size: 14px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0;
+}
+section {
+  margin: 50px 0;
+}
+
+h1 {
+  display: flex;
+  flex-direction: column;
+  font-family: "Syne";
+  font-size: 22px;
+  font-weight: 800;
+  color: #b1663c;
+}
+
+h1 > span {
+  font-family: "Work Sans";
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+h2 {
+  font-family: "Syne";
+  font-weight: 700;
+  font-size: 30px;
+  color: #1d6154;
+  text-align: center;
+  margin-bottom: 40px;
+}
+nav ul {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+}
+nav li {
+  padding: 0 10px;
+  font-size: 1.2em;
+}
+
+li:hover {
+  color: #b1663c;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 100px;
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* La largeur du formulaire est basée sur celle de son conteneur */
+  max-width: 450px; /* Largeur maximale du formulaire */
+  margin: auto; /* Margin auto pour centrer le formulaire */
+  gap: 30px;
+}
+
+.form-login div {
+  width: 100%;
+}
+.form-login p {
+  font-size: 14px;
+  text-align: center;
+  text-decoration: underline;
+}
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 20px;
+  border: none;
+  box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur */
+  box-shadow: 0 2px 5px rgba(200, 200, 200, 0.5);
+  margin-top: 5px;
+}
+
+label {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 16px;
+}
+
+button {
+  background: none;
+  background: #1d6154;
+  color: white;
+  padding: 12px;
+  border: 1px solid #1d6154;
+  font-weight: bold;
+  border-radius: 30px;
+  font-family: "Syne";
+  font-size: 16px;
+  width: 50%;
+  margin: 10px auto;
+  cursor: pointer;
+  display: block;
+}
+
+footer {
+  padding-top: 70px; /* Ajustez cette valeur selon vos besoins */
+}
+
+footer nav ul {
+	display: flex;
+	justify-content: flex-end;
+	margin: 2em;
+}
