@@ -129,6 +129,7 @@ a {
 #portfolio {
 	display: flex;
 	flex-direction: column;
+	margin-top: 150px;
 }
 
 #portfolio .filter-buttons {
@@ -136,13 +137,13 @@ a {
 	justify-content: center;
 	gap: 10px;
     flex-wrap: wrap; 
-	margin-bottom: 2em;
+	margin-bottom: 4em;
 	
 }
 .filter-buttons button{
 	background: none;
 	color: #1D6154;
-	padding: 10px;
+	padding: 8px 15px;
     border: 1px solid #1D6154;
 	font-weight: bold;
 	border-radius: 20px;
@@ -156,7 +157,7 @@ a {
 
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
+	margin-bottom: 2em;
 }
 
 .gallery {

@@ -3,7 +3,6 @@
  * @returns {Promise<void>} Une promesse qui se résout lorsque la liste des works est remplie.
  */
 
-
 async function getWorks(categoryId = 0) {
   try {
     // Fait une requête HTTP pour récupérer la liste des works depuis l'API.
@@ -14,9 +13,14 @@ async function getWorks(categoryId = 0) {
     gallery.innerHTML = ""; // Vide la galerie avant de la remplir avec les works filtrés
 
     // Filtrage des works basé sur l'ID de catégorie
-    const DataFiltrees =
-      categoryId === 0 ? data : data.filter((work) => work.categoryId === categoryId); // Si l'ID de catégorie est 0, affiche toutes les works, sinon, filtre les works par ID de catégorie.
+    let DataFiltrees;
 
+    if (categoryId === 0) {
+      DataFiltrees = data;
+    } else {
+      DataFiltrees = data.filter((work) => work.categoryId === categoryId); // Si l'ID de catégorie est 0, affiche toutes les works, sinon, filtre les works par ID de catégorie.
+    }
+    
     // Parcours chaque work dans les données filtrées avec une boucle for traditionnelle.
     for (let i = 0; i < DataFiltrees.length; i++) {
       const work = DataFiltrees[i]; // Obtient le work actuel dans la boucle.
@@ -80,21 +84,20 @@ async function filterButtons() {
 
     for (let i = 0; i < categories.length; i++) {
       const category = categories[i]; // Obtient la catégorie actuelle dans la boucle
-  
+
       // Crée un élément HTML "button" pour chaque catégorie.
       const button = document.createElement("button");
       button.innerText = category.name; // Définit le texte du bouton avec le nom de la catégorie
       button.setAttribute("data-category-id", category.id); // Définit un attribut "data-category-id" avec l'ID de la catégorie
-  
+
       // Ajoute un gestionnaire d'événements "click" au bouton
       button.addEventListener("click", function () {
-          getWorks(category.id); // Appelle getWorks avec l'ID de la catégorie lorsque le bouton est cliqué
+        getWorks(category.id); // Appelle getWorks avec l'ID de la catégorie lorsque le bouton est cliqué
       });
-  
+
       // Ajoute le bouton créé au conteneur de boutons
       buttonsContainer.appendChild(button);
-  }
-  
+    }
 
     title.insertAdjacentElement("afterend", buttonsContainer);
   } catch (error) {
@@ -104,4 +107,3 @@ async function filterButtons() {
 
 filterButtons();
 getWorks();
-
