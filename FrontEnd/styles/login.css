@@ -210,6 +210,30 @@ a {
   text-align: center;
   text-decoration: underline;
 }
+
+.top-banner {
+  display: none; /* La bande est cachée par défaut */
+  width: 100%;
+  height: 50px;
+  background-color: #000; /* La bande est noire */
+  color: white;
+  justify-content: center; /* centre horizontalement */
+  align-items: center; /* centre verticalement */
+  
+}
+
+.top-banner.show {
+  display: flex; /* La bande s'affiche lorsque l'utilisateur est connecté */
+}
+
+.show {
+  display: block; /* Affiche l'élément */
+}
+.hide {
+  display: none; /* Cache l'élément */
+}
+
+
 input[type="email"],
 input[type="password"] {
   width: 100%;
@@ -243,7 +267,7 @@ button {
 }
 
 footer {
-  padding-top: 70px; /* Ajustez cette valeur selon vos besoins */
+  padding-top: 70px;
 }
 
 footer nav ul {

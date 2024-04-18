@@ -21,7 +21,7 @@ async function getWorks(categoryId = 0) {
       DataFiltrees = data.filter((work) => work.categoryId === categoryId); // Si l'ID de catégorie est 0, affiche toutes les works, sinon, filtre les works par ID de catégorie.
     }
     
-    // Parcours chaque work dans les données filtrées avec une boucle for traditionnelle.
+    // Parcours chaque work dans les données filtrées
     for (let i = 0; i < DataFiltrees.length; i++) {
       const work = DataFiltrees[i]; // Obtient le work actuel dans la boucle.
 
@@ -100,10 +100,11 @@ async function filterButtons() {
     }
 
     title.insertAdjacentElement("afterend", buttonsContainer);
+    const token = localStorage.getItem("token");
+    basculerLoginLogout(!!token); // Convertit le token en booléen et met à jour l'UI
   } catch (error) {
     console.error("Erreur lors du chargement des catégories:", error);
   }
 }
 
-filterButtons();
 getWorks();
