@@ -9,8 +9,12 @@ async function getWorks(categoryId = 0) {
     const response = await fetch("http://localhost:5678/api/works");
     const data = await response.json();
 
-    const gallery = document.querySelector(".gallery"); // Selectionne le premier élément avec la classe "gallery"
-    gallery.innerHTML = ""; // Vide la galerie avant de la remplir avec les works filtrés
+    const gallery = document.querySelector(".gallery");
+    if (!gallery) {
+      return;
+    }
+      gallery.innerHTML = ""; // Vide la galerie avant de la remplir avec les works filtrés
+    
 
     // Filtrage des works basé sur l'ID de catégorie
     let DataFiltrees;
@@ -20,7 +24,7 @@ async function getWorks(categoryId = 0) {
     } else {
       DataFiltrees = data.filter((work) => work.categoryId === categoryId); // Si l'ID de catégorie est 0, affiche toutes les works, sinon, filtre les works par ID de catégorie.
     }
-    
+
     // Parcours chaque work dans les données filtrées
     for (let i = 0; i < DataFiltrees.length; i++) {
       const work = DataFiltrees[i]; // Obtient le work actuel dans la boucle.
@@ -100,11 +104,12 @@ async function filterButtons() {
     }
 
     title.insertAdjacentElement("afterend", buttonsContainer);
-    const token = localStorage.getItem("token");
-    basculerLoginLogout(!!token); // Convertit le token en booléen et met à jour l'UI
+    
+    
   } catch (error) {
     console.error("Erreur lors du chargement des catégories:", error);
   }
 }
 
 getWorks();
+

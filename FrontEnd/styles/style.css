@@ -211,10 +211,10 @@ a {
   display: none; /* La bande est cachée par défaut */
   width: 100%;
   height: 50px;
-  background-color: #000; /* La bande est noire */
+  background-color: #000;
   color: white;
-  justify-content: center; /* centre horizontalement */
-  align-items: center; /* centre verticalement */
+  justify-content: center;
+  align-items: center;
 }
 
 .top-banner.show {

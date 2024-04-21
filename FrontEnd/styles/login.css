@@ -255,7 +255,7 @@ button {
   background: #1d6154;
   color: white;
   padding: 12px;
-  border: 1px solid #1d6154;
+  border: none;
   font-weight: bold;
   border-radius: 30px;
   font-family: "Syne";
