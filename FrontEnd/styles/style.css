@@ -282,6 +282,199 @@ footer nav ul {
   margin: 2em;
 }
 
+/*-----------------------------------CSS Modal----------------------------------*/
+
+.modal{
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.modal-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center; 
+  overflow: auto;
+  border-radius: 10px;
+  width: 600px;
+  max-width: calc(100vw - 20px);
+  max-height: calc(100vh - 20px);
+  padding: 20px;
+  background-color: white;
+}
+
+#titlemodal1, #titlemodal2 {
+  font-family: 'Work Sans';
+  font-size: 20px;
+  margin-bottom: 40px;
+}
+
+#close-modal {
+  margin-left: auto;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 16px;
+  color: black;
+  cursor: pointer;
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+ 
+}
+
+.button-back, .js-modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.button-back{
+  font-size: 20px;
+}
+
+#button-add-photo {
+  background: none;
+  background: #1d6154;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  font-weight: bold;
+  border-radius: 30px;
+  font-family: "Syne";
+  font-size: 16px;
+  width: 100%;
+  margin: 10px auto;
+  cursor: pointer;
+  display: block;
+}
+#add-photo-view {
+  display: none;
+  width: 70%;
+}
+#add-photo-view .input label{
+  display: flex;
+  margin-bottom: 5px;
+ 
+}
+#add-photo-view input[type="text"] {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur */
+  box-shadow: 0 2px 5px rgba(200, 200, 200, 0.5);
+  margin-bottom: 20px;
+}
+#add-photo-view select {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  box-sizing: border-box;
+  box-shadow: 0 2px 5px rgba(200, 200, 200, 0.5);
+}
+
+.upload-area {
+  border-radius: 3px;
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 40px;
+  background-color: #E8F1F7;
+  color: #bbb;
+  cursor: pointer;
+}
+
+
+.upload-icon {
+  font-size: 50px; /* Taille de l'icône */
+  margin-bottom: 10px;
+  color: #B9C5CC;
+}
+
+.upload-area p {
+  margin: 10px 0; /* Espacement vertical pour les paragraphes */
+  font-size: 12px;
+  color: #444444; 
+}
+
+.file-types {
+  font-size: 12px;
+}
+
+#submit-photo{
+  background: none;
+  background: #A7A7A7;
+  color: white;
+  padding: 10px;
+  border: none;
+  font-weight: bold;
+  border-radius: 30px;
+  font-family: "Syne";
+  font-size: 16px;
+  width: 60%;
+  margin: 10px auto;
+  cursor: pointer;
+  display: block;
+}
+
+#button-upload-photo{
+  background: none;
+  background: #B9C5CC;
+  color: #306685;
+  padding: 10px;
+  border: none;
+  font-weight: bold;
+  border-radius: 30px;
+  font-family: "Syne";
+  font-size: 16px;
+  width: 55%;
+  margin: 10px auto;
+  cursor: pointer;
+  display: block;
+}
+
+.separator {
+  border: none;
+  height: 1px;
+  background-color: #B3B3B3;
+  margin: 40px 0;
+}
+
+.select-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.select-container select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Continuez avec votre style existant pour le select ici */
+}
+
+.select-container .select-arrow {
+  position: absolute;
+  top: 50%; /* Centrer verticalement */
+  right: 30px; /* Position à droite dans le select */
+  transform: translateY(-50%);
+  pointer-events: none; /* Cela permet au clic de passer à travers l'icône pour ouvrir le select */
+  color: #6C6C6C;
+}
+
+
+.select-container select::-ms-expand {
+  display: none;  /* Cache la fleche existante dans le select*/
+}
+
 /* --------------------------------------------CSS Projet FIN ----------------------------------*/
 
 #portfolio h2 {
