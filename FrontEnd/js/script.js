@@ -3,6 +3,7 @@
  * @returns {Promise<void>} Une promesse qui se résout lorsque la liste des works est remplie.
  */
 
+//Fonction pour récupérer et filtrer les works
 async function getWorks(categoryId = 0) {
   try {
     // Fait une requête HTTP pour récupérer la liste des works depuis l'API.
@@ -10,61 +11,93 @@ async function getWorks(categoryId = 0) {
     const data = await response.json();
 
     const gallery = document.querySelector(".gallery");
-    if (!gallery) {
-      return;
+    const galleryModal = document.querySelector(".gallery-modal");
+
+    if (!gallery || !galleryModal) {
+      return; // S'arrête ici si l'une des galeries n'existe pas
     }
-      gallery.innerHTML = ""; // Vide la galerie avant de la remplir avec les works filtrés
-    
+
+    gallery.innerHTML = ""; // Vide la galerie avant de la remplir avec les works filtrés
+    galleryModal.innerHTML = ""; // Vide également la galerie modal
 
     // Filtrage des works basé sur l'ID de catégorie
-    let DataFiltrees;
-
-    if (categoryId === 0) {
-      DataFiltrees = data;
-    } else {
-      DataFiltrees = data.filter((work) => work.categoryId === categoryId); // Si l'ID de catégorie est 0, affiche toutes les works, sinon, filtre les works par ID de catégorie.
-    }
+    let dataFiltrees =
+      categoryId === 0 ? data : data.filter((work) => work.categoryId === categoryId);
 
     // Parcours chaque work dans les données filtrées
-    for (let i = 0; i < DataFiltrees.length; i++) {
-      const work = DataFiltrees[i]; // Obtient le work actuel dans la boucle.
+    for (let i = 0; i < dataFiltrees.length; i++) {
+      const work = dataFiltrees[i]; // Obtient le work actuel dans la boucle.
 
-      // Crée un élément HTML "figure" pour chaque work.
+      // Crée un élément HTML "figure" pour chaque work pour la galerie principale.
       const figure = document.createElement("figure");
-
-      // Ajoute un attribut "data-id" à l'élément "figure" avec la valeur de l'ID du work.
       figure.setAttribute("data-id", work.id);
 
-      // Crée un élément HTML "img" pour chaque work.
       const img = document.createElement("img");
-
-      // Ajoute un attribut "src" à l'élément "img" avec la valeur de l'URL de l'image du work.
       img.setAttribute("src", work.imageUrl);
-
-      // Ajoute un attribut "alt" à l'élément "img" avec la valeur du titre du work.
       img.setAttribute("alt", work.title);
 
-      // Crée un élément HTML "figcaption" pour chaque work.
       const figcaption = document.createElement("figcaption");
-
-      // Ajoute le titre du work à l'élément "figcaption".
       figcaption.innerText = work.title;
 
-      // Ajoute l'élément "img" à l'élément "figure".
       figure.appendChild(img);
-
-      // Ajoute l'élément "figcaption" à l'élément "figure".
       figure.appendChild(figcaption);
-
-      // Ajoute l'élément "figure" à la galerie.
       gallery.appendChild(figure);
+
+      // Création et ajout à la galerie modal sans légende
+      const figureModal = document.createElement("figure");
+      figureModal.setAttribute("data-id", work.id);
+
+      const imgModal = document.createElement("img");
+      imgModal.setAttribute("src", work.imageUrl);
+      imgModal.setAttribute("alt", work.title);
+
+      // Création du bouton qui contiendra l'icône
+      const deleteButton = document.createElement("button");
+      deleteButton.setAttribute("type", "button");
+      deleteButton.classList.add("btn", "delete-button", "js-modal-stop");
+      deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
+
+      deleteButton.onclick = function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        deleteWork(work.id);
+        console.log("Clic sur l’icône de suppression traité pour workId:", work.id);
+      };
+
+      figureModal.appendChild(imgModal);
+      figureModal.appendChild(deleteButton);
+      galleryModal.appendChild(figureModal);
     }
   } catch (error) {
-    // Affiche un message d'erreur dans la console en cas d'échec.
-    console.log(error);
+    console.error("Une erreur est survenue :", error);
   }
 }
 
+//Fonction pour la suppression des works
+async function deleteWork(workId) {
+  try {
+    const response = await fetch(`http://localhost:5678/api/works/${workId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
+
+    if (response.ok) {
+      console.log("Supprimé avec succès");
+      const elementToRemove = document.querySelector(`figure[data-id="${workId}"]`);
+      if (elementToRemove) {
+        elementToRemove.remove(); // Retire l'élément du DOM.
+      }
+    } else {
+      console.error("Erreur lors de la suppression");
+    }
+  } catch (error) {
+    console.error("Erreur au cours du processus de suppression", error);
+  }
+}
+
+//Fonction pour afficher les boutons de filtrage
 async function filterButtons() {
   try {
     // Récupère les catégories depuis l'API
@@ -104,12 +137,9 @@ async function filterButtons() {
     }
 
     title.insertAdjacentElement("afterend", buttonsContainer);
-    
-    
   } catch (error) {
     console.error("Erreur lors du chargement des catégories:", error);
   }
 }
 
 getWorks();
-

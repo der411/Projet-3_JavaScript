@@ -67,81 +67,78 @@
       <section id="portfolio">
         <div class="title-container">
           <h2>Mes Projets</h2>
-          <a href="#modal1" class="edit-link hide js-modal"
+          <a href="#modal1" id="edit-link" class="edit-link hide js-modal"
             ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> modifier</a
           >
         </div>
-                  <!------------------------------------------------------- HTML Modale --------------------------------------------------->
-          <!----------------------- Modale Page 1 : Suppression de projets existants ---------------------------->
-          <aside
-            id="modal1"
-            class="modal"
-            aria-hidden="true"
-            role="dialog"
-            aria-labelledby="titlemodal1 titlemodal2 button-modal close-modal"
-            style="display: none"
-          >
-            <div class="modal-wrapper js-modal-stop">
-              <div class="modal-header">
-                <button id="button-back" class="button-back" style="visibility: hidden">
-                  <i class="fas fa-arrow-left"></i>
-                </button>
-                <button id="close-modal" class="js-modal-close">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-              <div id="gallery-view">
-                <h3 id="titlemodal1">Galerie photo</h3>
+        <!------------------------------------------------------- HTML Modale --------------------------------------------------->
+        <!----------------------- Modale Page 1 : Suppression de projets existants ---------------------------->
+        <div
+          id="modal1"
+          class="modal"
+          aria-hidden="true"
+          role="dialog"
+          aria-labelledby="titlemodal1 titlemodal2 close-modal"
+          style="display: none"
+        >
+          <div class="modal-wrapper js-modal-stop">
+            <div class="modal-header">
+              <button id="button-back" class="button-back" style="visibility: hidden">
+                <i class="fas fa-arrow-left"></i>
+              </button>
+              <button id="close-modal" class="js-modal-close">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <div id="gallery-view">
+              <h3 id="titlemodal1">Galerie photo</h3>
+              <div class="galleryModal-container">
+                <div class="gallery-modal"></div>
                 <hr class="separator" />
-                <button id="button-add-photo">Ajouter une photo</button>
               </div>
-              <!----------------------- Modale Page 2 : Ajout de nouveaux projets ---------------------------->
-              <div id="add-photo-view">
-                <h3 id="titlemodal2">Ajout photo</h3>
-                <div class="upload-area">
-                  <input
-                    type="file"
-                    id="photo-upload"
-                    name="photo-upload"
-                    accept="image/*"
-                    hidden
-                  />
-
-                  <div class="upload-icon">
-                    <i class="fa-regular fa-image"></i>
-                  </div>
-                  <label for="photo-upload">
-                    <button id="button-upload-photo">+ Ajouter photo</button>
-                  </label>
-                  <p class="file-types">jpg, png : 4mo max</p>
+              <button id="button-add-photo">Ajouter une photo</button>
+            </div>
+            <!----------------------- Modale Page 2 : Ajout de nouveaux projets ---------------------------->
+            <div id="add-photo-view">
+              <h3 id="titlemodal2">Ajout photo</h3>
+              <div class="upload-area">
+                <div class="upload-icon">
+                  <i class="fa-regular fa-image"></i>
                 </div>
-                <div class="add-photo-area">
-                  <div class="input">
-                    <div class="input-group">
-                      <label for="photo-title">Titre</label>
-                      <input type="text" id="photo-title" name="photo-title" />
-                    </div>
 
-                    <div class="input-group">
-                      <label for="photo-category">Catégorie</label>
-                      <div class="select-container">
+                <label id="button-upload-photo" for="file-upload" style="cursor: pointer">
+                  + Ajouter photo
+                </label>
+                <input type="file" id="file-upload" style="display: none" accept="image/*" />
+                <p class="file-types">jpg, png : 4mo max</p>
+                <div id="image-preview"></div>
+              </div>
+              <form action="" method="post">
+                <div class="input">
+                  <div class="input-group">
+                    <label for="photo-title">Titre</label>
+                    <input type="text" id="photo-title" name="photo-title" />
+                  </div>
+                  <div class="input-group">
+                    <label for="photo-category">Catégorie</label>
+                    <div class="select-container">
                       <select id="photo-category" name="photo-category">
                         <option value=""></option>
-                        <option value="nature">Objets</option>
-                        <option value="urban">Appartements</option>
-                        <option value="portrait">Hotels & restaurants</option>
+                        <option value="objets">Objets</option>
+                        <option value="appartements">Appartements</option>
+                        <option value="hotels & restaurants">Hotels & restaurants</option>
                       </select>
                       <i class="fa fa-chevron-down select-arrow"></i>
                     </div>
-                    </div>
                   </div>
                 </div>
-                <hr class="separator" />
-                <button id="submit-photo">Valider</button>
-              </div>
+              </form>
+              <hr class="separator" />
+              <button type="button" id="submit-photo">Valider</button>
             </div>
-          </aside>
-          <!-------------------------------------------------- FIN HTML Modale ----------------------------------------------->
+          </div>
+        </div>
+        <!-------------------------------------------------- FIN HTML Modale ----------------------------------------------->
         <div class="gallery">
           <!-- suppression des images, car récupérées dynamiquement depuis l'API -->
         </div>

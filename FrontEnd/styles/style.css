@@ -284,7 +284,7 @@ footer nav ul {
 
 /*-----------------------------------CSS Modal----------------------------------*/
 
-.modal{
+.modal {
   position: fixed;
   display: flex;
   align-items: center;
@@ -296,11 +296,11 @@ footer nav ul {
   background: rgba(0, 0, 0, 0.3);
 }
 
-.modal-wrapper{
+.modal-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center; 
+  align-items: center;
   overflow: auto;
   border-radius: 10px;
   width: 600px;
@@ -310,10 +310,12 @@ footer nav ul {
   background-color: white;
 }
 
-#titlemodal1, #titlemodal2 {
-  font-family: 'Work Sans';
+#titlemodal1,
+#titlemodal2 {
+  font-family: "Work Sans";
   font-size: 20px;
   margin-bottom: 40px;
+  text-align: center;
 }
 
 #close-modal {
@@ -329,16 +331,16 @@ footer nav ul {
   display: flex;
   justify-content: space-between;
   width: 100%;
- 
 }
 
-.button-back, .js-modal-close {
+.button-back,
+.js-modal-close {
   background: none;
   border: none;
   cursor: pointer;
 }
 
-.button-back{
+.button-back {
   font-size: 20px;
 }
 
@@ -352,20 +354,17 @@ footer nav ul {
   border-radius: 30px;
   font-family: "Syne";
   font-size: 16px;
-  width: 100%;
+  width: 50%;
   margin: 10px auto;
   cursor: pointer;
   display: block;
 }
+
 #add-photo-view {
   display: none;
-  width: 70%;
+  width: 80%;
 }
-#add-photo-view .input label{
-  display: flex;
-  margin-bottom: 5px;
- 
-}
+
 #add-photo-view input[type="text"] {
   width: 100%;
   padding: 18px;
@@ -382,36 +381,73 @@ footer nav ul {
   box-shadow: 0 2px 5px rgba(200, 200, 200, 0.5);
 }
 
+.select-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.select-container select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.select-container .select-arrow {
+  position: absolute;
+  top: 50%; /* Centrer verticalement */
+  right: 30px;
+  transform: translateY(-50%);
+  pointer-events: none; /* permet au clic de passer à travers l'icône pour ouvrir le select */
+  color: #6c6c6c;
+}
+
+.select-container select::-ms-expand {
+  display: none; /* Cache la fleche existante dans le select*/
+}
+
+#add-photo-view .separator {
+  width: 100%;
+  border: 1px solid #b3b3b3;
+  margin-top: 60px;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
 .upload-area {
   border-radius: 3px;
   text-align: center;
   padding: 20px;
   margin-bottom: 40px;
-  background-color: #E8F1F7;
+  background-color: #e8f1f7;
   color: #bbb;
-  cursor: pointer;
 }
 
-
 .upload-icon {
-  font-size: 50px; /* Taille de l'icône */
+  font-size: 50px;
   margin-bottom: 10px;
-  color: #B9C5CC;
+  color: #b9c5cc;
 }
 
 .upload-area p {
-  margin: 10px 0; /* Espacement vertical pour les paragraphes */
+  margin: 10px 0;
   font-size: 12px;
-  color: #444444; 
+  color: #444444;
+}
+
+.input .input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .file-types {
   font-size: 12px;
 }
 
-#submit-photo{
+#submit-photo {
   background: none;
-  background: #A7A7A7;
+  background: #a7a7a7;
   color: white;
   padding: 10px;
   border: none;
@@ -425,9 +461,8 @@ footer nav ul {
   display: block;
 }
 
-#button-upload-photo{
-  background: none;
-  background: #B9C5CC;
+#button-upload-photo {
+  background: #b9c5cc;
   color: #306685;
   padding: 10px;
   border: none;
@@ -435,45 +470,69 @@ footer nav ul {
   border-radius: 30px;
   font-family: "Syne";
   font-size: 16px;
-  width: 55%;
-  margin: 10px auto;
+  width: auto;
+  margin: 0 auto;
   cursor: pointer;
-  display: block;
+  display: inline-block;
 }
 
-.separator {
-  border: none;
-  height: 1px;
-  background-color: #B3B3B3;
-  margin: 40px 0;
+#gallery-view .galleryModal-container {
+  width: 80%; /*largeur du conteneur de la galerie */
+  margin: 0 auto; /* Centre le conteneur sur la page */
 }
 
-.select-container {
+#gallery-view .gallery-modal {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#gallery-view .gallery-modal figure {
+  flex: 0 0 18%; /* Chaque image utilise 18% de l'espace, permettant 5 images par ligne */
+  box-sizing: border-box;
+  margin: 1%; /* Marge autour de chaque image */
+}
+
+#gallery-view .gallery-modal img {
+  width: 100%;
+  height: auto;
+}
+
+.galleryModal-container .separator {
+  width: 100%;
+  border: 1px solid #b3b3b3;
+  margin-top: 60px; 
+  margin-bottom: 40px;
+}
+
+.delete-button {
+  position: absolute;
+  border:none;
+  background: #000000;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+  color: #FFFFFF;
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 1001;
+  
+}
+
+.gallery-modal figure {
   position: relative;
   display: inline-block;
-  width: 100%;
+  margin: 10px;
 }
 
-.select-container select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  /* Continuez avec votre style existant pour le select ici */
-}
-
-.select-container .select-arrow {
-  position: absolute;
-  top: 50%; /* Centrer verticalement */
-  right: 30px; /* Position à droite dans le select */
-  transform: translateY(-50%);
-  pointer-events: none; /* Cela permet au clic de passer à travers l'icône pour ouvrir le select */
-  color: #6C6C6C;
+#image-preview {
+  display: block;
+  max-width: 100%;
+  max-height: 200px;
+  margin: auto;
+  object-fit: contain;
 }
 
 
-.select-container select::-ms-expand {
-  display: none;  /* Cache la fleche existante dans le select*/
-}
 
 /* --------------------------------------------CSS Projet FIN ----------------------------------*/
 

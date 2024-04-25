@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       localStorage.setItem("token", data.token); // Stocke le token dans le localStorage.
       basculerLoginLogout(true); // Met à jour l'interface utilisateur en état connecté.
       window.location.href = "./index.html"; // Redirige vers la page principale.
+      console.log('Redirection vers la page principale');
     } catch (error) {
       console.error("Erreur lors de la connexion:", error);
     }
@@ -85,6 +86,7 @@ function basculerLoginLogout(isLoggedIn) {
 }
 
 function logout() {
+  console.log('Logout appelé');
   // Fonction pour déconnecter l'utilisateur.
   localStorage.removeItem("token"); // Supprime le token du localStorage.
   basculerLoginLogout(false); // Met à jour l'interface utilisateur en état non connecté.
