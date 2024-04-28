@@ -113,7 +113,7 @@
                 <p class="file-types">jpg, png : 4mo max</p>
                 <div id="image-preview"></div>
               </div>
-              <form action="" method="post">
+              <form id="work-form" action="" method="post">
                 <div class="input">
                   <div class="input-group">
                     <label for="photo-title">Titre</label>
@@ -122,19 +122,14 @@
                   <div class="input-group">
                     <label for="photo-category">Catégorie</label>
                     <div class="select-container">
-                      <select id="photo-category" name="photo-category">
-                        <option value=""></option>
-                        <option value="objets">Objets</option>
-                        <option value="appartements">Appartements</option>
-                        <option value="hotels & restaurants">Hotels & restaurants</option>
-                      </select>
+                      <select id="photo-category" name="photo-category"></select>
                       <i class="fa fa-chevron-down select-arrow"></i>
                     </div>
                   </div>
                 </div>
+                <hr class="separator" />
+                <button type="submit" id="submit-photo">Valider</button>
               </form>
-              <hr class="separator" />
-              <button type="button" id="submit-photo">Valider</button>
             </div>
           </div>
         </div>

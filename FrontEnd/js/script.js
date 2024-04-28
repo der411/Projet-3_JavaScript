@@ -86,8 +86,12 @@ async function deleteWork(workId) {
     if (response.ok) {
       console.log("Supprimé avec succès");
       const elementToRemove = document.querySelector(`figure[data-id="${workId}"]`);
+      const gallery = document.querySelector(".gallery");
+      const galleryImg = gallery.querySelector(`figure[data-id="${workId}"]`);
+      
       if (elementToRemove) {
         elementToRemove.remove(); // Retire l'élément du DOM.
+        galleryImg.remove(); // Retire l'élément du DOM.
       }
     } else {
       console.error("Erreur lors de la suppression");
