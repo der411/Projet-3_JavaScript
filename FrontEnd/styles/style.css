@@ -133,6 +133,7 @@ body {
   margin: auto;
   font-family: "Work Sans";
   font-size: 14px;
+  background: #FFFEF8;
 }
 header {
   display: flex;
@@ -263,12 +264,16 @@ a {
 }
 .filter-buttons button {
   background: none;
-  color: #1d6154;
   padding: 8px 15px;
   border: 1px solid #1d6154;
   font-weight: bold;
   border-radius: 20px;
   font-family: "Syne";
+}
+
+.filter-buttons button.active {
+  background-color: #1d6154;
+  color: white;
 }
 
 .filter-buttons button:hover {
@@ -342,6 +347,7 @@ footer nav ul {
 
 .button-back {
   font-size: 20px;
+  visibility: hidden;
 }
 
 #button-add-photo {
@@ -443,6 +449,10 @@ footer nav ul {
 
 .file-types {
   font-size: 12px;
+}
+
+#file-upload {
+  display: none;
 }
 
 #submit-photo {

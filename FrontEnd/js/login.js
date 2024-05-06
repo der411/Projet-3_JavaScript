@@ -1,27 +1,8 @@
 document.addEventListener("DOMContentLoaded", async function () {
   // Chargement et initialisation du comportement dynamique de la page après son chargement complet.
-  const portfolioSection = document.getElementById("portfolio");
-  if (portfolioSection) {
-    await filterButtons();  // Appelle une fonction pour filtrer les boutons (fonction du fichier script.js).
-  }
-  const token = localStorage.getItem("token");
-  basculerLoginLogout(!!token); // Convertit le token en booléen pour gérer l'affichage des éléments UI de connexion.
-
-  const btn = document.querySelector("#btn");
-  const email = document.querySelector("#email");
-  const password = document.querySelector("#password");
-
-  if (btn && email && password) {
-    btn.addEventListener("click", async (e) => {
-      e.preventDefault(); // Empêche le comportement par défaut du bouton (soumission du formulaire).
-      if (validerFormulaire(email, password)) {
-        await userLogin(email.value, password.value); // Se connecte si le formulaire est valide.
-      }
-    });
-  }
-
+  
   async function userLogin(email, password) {
-    // Fonction pour connecter l'utilisateur en utilisant les API.
+    // Fonction pour connecter l'utilisateur en utilisant l'API.
     const loginUrl = "http://localhost:5678/api/users/login";
     const loginData = { email, password };
     const requestOptions = {
@@ -37,12 +18,33 @@ document.addEventListener("DOMContentLoaded", async function () {
       }
       const data = await response.json();
       localStorage.setItem("token", data.token); // Stocke le token dans le localStorage.
-      basculerLoginLogout(true); // Met à jour l'interface utilisateur en état connecté.
+      basculerUILoginLogout(true); // Met à jour l'interface utilisateur en état connecté.
       window.location.href = "./index.html"; // Redirige vers la page principale.
-      console.log('Redirection vers la page principale');
     } catch (error) {
       console.error("Erreur lors de la connexion:", error);
     }
+  }
+  
+  // Initialisation de l'UI (appel de filterButtons, basculerUILoginLogout et validerFormulaire).
+  const portfolioSection = document.getElementById("portfolio");
+  if (portfolioSection) {
+    await filterButtons();  // Appelle la fonction pour afficher les boutons de filtrage.
+  }
+  
+  const token = localStorage.getItem("token");
+  basculerUILoginLogout(!!token); // Convertit le token en booléen pour gérer l'affichage des éléments UI de connexion.
+
+  const btn = document.querySelector("#btn");
+  const email = document.querySelector("#email");
+  const password = document.querySelector("#password");
+
+  if (btn && email && password) {
+    btn.addEventListener("click", async (e) => {
+      e.preventDefault(); // Empêche le comportement par défaut du bouton (soumission du formulaire).
+      if (validerFormulaire(email, password)) {
+        await userLogin(email.value, password.value); // Se connecte si le formulaire est valide.
+      }
+    });
   }
 });
 
@@ -52,7 +54,7 @@ function validerFormulaire(email, password) {
     alert("Veuillez entrer un email et un mot de passe");
     return false;
   }
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expession régulière pour valider l'email.
   if (!emailRegex.test(email.value)) {
     alert("Veuillez entrer un email valide");
     return false;
@@ -60,7 +62,7 @@ function validerFormulaire(email, password) {
   return true;
 }
 
-function basculerLoginLogout(isLoggedIn) {
+function basculerUILoginLogout(isLoggedIn) {
   // Fonction pour basculer l'affichage des éléments UI en fonction de l'état de connexion.
   const loginLink = document.getElementById("loginItem");
   const logoutLink = document.getElementById("logoutItem");
@@ -80,6 +82,7 @@ function basculerLoginLogout(isLoggedIn) {
   if (filterButtonsContainer) {
     filterButtonsContainer.classList.toggle("hide", isLoggedIn);
   }
+
   if (editLink) {
     editLink.classList.toggle("hide", !isLoggedIn);
   }
@@ -89,6 +92,6 @@ function logout() {
   console.log('Logout appelé');
   // Fonction pour déconnecter l'utilisateur.
   localStorage.removeItem("token"); // Supprime le token du localStorage.
-  basculerLoginLogout(false); // Met à jour l'interface utilisateur en état non connecté.
+  basculerUILoginLogout(false); // Met à jour l'interface utilisateur en état non connecté.
   window.location.href = "/login"; // Redirige vers la page de connexion.
 }

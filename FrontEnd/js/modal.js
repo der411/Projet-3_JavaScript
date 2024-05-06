@@ -1,74 +1,68 @@
+//--------------------------------------------------------Les functions---------------------------------------------------//
+
 const uploadArea = document.querySelector(".upload-area");
 const uploadIcon = uploadArea.querySelector(".upload-icon");
 const addButton = uploadArea.querySelector("#button-upload-photo");
 const fileTypeText = uploadArea.querySelector(".file-types");
 const imagePreview = document.getElementById("image-preview");
+const submitButton = document.getElementById("submit-photo");
 
-document.addEventListener("DOMContentLoaded", () => {
-  let modal = document.querySelector(".js-modal");
+let modal = document.querySelector(".js-modal");
 
-  // Fonction pour stopper la propagation des événements
-  const stopPropagation = (e) => {
-    e.stopPropagation();
-  };
+// Fonction pour stopper la propagation des événements
+function stopPropagation(e) {
+  e.stopPropagation();
+}
 
-  // Fonction pour fermer la modale
-  const closeModal = (e) => {
-    console.log("Fermeture de la modale demandée");
-    if (modal === null) return;
+// Fonction pour ouvrir la modale
+function openModal(e) {
+  e.preventDefault();
+  const target = document.querySelector(e.target.getAttribute("href"));
+  target.style.display = null;
+  modal = target;
+  modal.addEventListener("click", closeModal);
+  modal.querySelector(".js-modal-close").addEventListener("click", closeModal);
+  modal.querySelector(".js-modal-stop").addEventListener("click", stopPropagation);
+}
+
+if (modal) {
+  document.getElementById("edit-link").addEventListener("click", openModal);
+}
+
+// Fonction pour fermer la modale
+function closeModal(e) {
+  console.log("Fermeture de la modale demandée");
+  if (modal === null) return;
+  e.preventDefault();
+  modal.style.display = "none";
+  modal.removeEventListener("click", closeModal);
+  modal.querySelector(".js-modal-close").removeEventListener("click", closeModal);
+  modal.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation);
+  modal = null;
+}
+
+// Fonction pour afficher la vue d'ajout de photo
+function showAddPhotoView() {
+  document.getElementById("gallery-view").style.display = "none";
+  document.getElementById("add-photo-view").style.display = "block";
+  document.getElementById("button-back").style.visibility = "visible";
+
+  document.getElementById("submit-photo").addEventListener("click", (e) => {
     e.preventDefault();
-    modal.style.display = "none";
-    modal.removeEventListener("click", closeModal);
-    modal.querySelector(".js-modal-close").removeEventListener("click", closeModal);
-    modal.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation);
-    modal = null;
-  };
-
-  // Fonction pour ouvrir la modale
-  const openModal = (e) => {
-    e.preventDefault();
-    const target = document.querySelector(e.target.getAttribute("href"));
-    target.style.display = null;
-    modal = target;
-    modal.addEventListener("click", closeModal);
-    modal.querySelector(".js-modal-close").addEventListener("click", closeModal);
-    modal.querySelector(".js-modal-stop").addEventListener("click", stopPropagation);
-  };
-
-  if (modal) {
-    document.getElementById("edit-link").addEventListener("click", openModal);
-  }
-
-  // Fonction pour afficher la vue d'ajout de photo
-  const showAddPhotoView = () => {
-    document.getElementById("gallery-view").style.display = "none";
-    document.getElementById("add-photo-view").style.display = "block";
-    document.getElementById("button-back").style.visibility = "visible";
-    
-    document.getElementById("submit-photo").addEventListener("click", (e) => {
-      e.preventDefault();
-      addWork(e);
-    });
-  };
-
-  // Fonction pour retourner à la vue de la galerie
-  const showGalleryView = (e) => {
-    e.preventDefault();
-    document.getElementById("add-photo-view").style.display = "none";
-    document.getElementById("gallery-view").style.display = "block";
-    document.getElementById("button-back").style.visibility = "hidden";
-  };
-
-  // Ajout des gestionnaires d'événements pour la gestion des vues
-  document.getElementById("button-add-photo").addEventListener("click", () => {
-    showAddPhotoView();
+    addWork(e);
   });
-  document.getElementById("close-modal").addEventListener("click", showGalleryView);
-  document.getElementById("button-back").addEventListener("click", showGalleryView);
-});
+}
+
+// Fonction pour retourner à la vue de la galerie
+function showGalleryView(e) {
+  e.preventDefault();
+  document.getElementById("add-photo-view").style.display = "none";
+  document.getElementById("gallery-view").style.display = "block";
+  document.getElementById("button-back").style.visibility = "hidden";
+}
 
 // Fonction asynchrone pour récupérer les catégories
-const getCategories = async () => {
+async function getCategories() {
   try {
     const response = await fetch("http://localhost:5678/api/categories", {
       method: "GET",
@@ -102,13 +96,14 @@ const getCategories = async () => {
   } catch (error) {
     console.error("Erreur lors de la connexion à l'API", error);
   }
-};
-// Appel la fonction au chargement de la page
+}
+// Appel la fonction getCategories au chargement de la page
 window.onload = getCategories;
 
+
 // Fonction asynchrone pour ajouter un work
-const addWork = async (event) => {
-  event.preventDefault();
+async function addWork(e) {
+  e.preventDefault();
 
   const title = document.getElementById("photo-title").value;
   const fileInput = document.getElementById("file-upload");
@@ -116,7 +111,7 @@ const addWork = async (event) => {
   const categoryId = document.getElementById("photo-category").value;
 
   // Vérifie que tous les champs sont remplis
-  if (!title || !imageFile || categoryId === undefined) {
+  if (!title || !imageFile || !categoryId) {
     alert("Merci de compléter tous les champs");
     return;
   }
@@ -125,11 +120,6 @@ const addWork = async (event) => {
   formData.append("title", title);
   formData.append("image", imageFile);
   formData.append("category", categoryId);
-
-  document.getElementById("photo-title").value = "";
-  document.getElementById("file-upload").value = "";
-  document.getElementById("photo-category").value = "";
-  document.getElementById("image-preview").innerHTML = "";
 
   try {
     const response = await fetch("http://localhost:5678/api/works", {
@@ -142,23 +132,43 @@ const addWork = async (event) => {
 
     const result = await response.json(); // Parse la réponse en JSON
     if (response.ok) {
-      console.log("Work ajouté avec succès", result);
+      console.log("Réponse de l'API: Work ajouté avec succès", result);
+      submitButton.style.backgroundColor = "#1d6154";
+
+      // Change la couleur du bouton en gris après 2 secondes
+      setTimeout(function () {
+        submitButton.style.backgroundColor = "#a7a7a7";
+      }, 2000);
 
       uploadIcon.style.display = "block";
       addButton.style.display = "block";
       fileTypeText.style.display = "block";
 
       getWorks();
-      console.log("Work ajouté avec succès", result);
     } else {
       console.error("Erreur lors de l'ajout du work", result);
-      // Logique pour gérer l'échec (par exemple, montrer un message à l'utilisateur)
     }
   } catch (error) {
     console.error("Erreur lors de la connexion à l'API", error);
-    // Logique pour gérer les erreurs réseau ou de connexion
   }
-};
+
+  // Réinitialise les champs de formulaire après l'envoi de la requête
+  document.getElementById("photo-title").value = "";
+  document.getElementById("file-upload").value = "";
+  document.getElementById("photo-category").value = "";
+  document.getElementById("image-preview").innerHTML = "";
+}
+
+//--------------------------------------- Gestionnaires d'événements pour les vues -----------------------------------//
+
+//Affichage de la deuxième vue(ajout de photo) lors du clic sur le bouton "Ajouter une photo"
+document.getElementById("button-add-photo").addEventListener("click", () => {
+  showAddPhotoView();
+}); 
+//Affichage de la première vue(galerie) lors de l'ouverture de la modale
+document.getElementById("close-modal").addEventListener("click", showGalleryView);
+//Affichage de la première vue(galerie) lors du clic sur le bouton "Retour"
+document.getElementById("button-back").addEventListener("click", showGalleryView);
 
 //Remplace la zone upload-area par l'aperçu de l'image sélectionnée
 document.getElementById("file-upload").addEventListener("change", function () {
@@ -175,7 +185,7 @@ document.getElementById("file-upload").addEventListener("change", function () {
       addButton.style.display = "none";
       fileTypeText.style.display = "none";
 
-      // Crée et afficher l'aperçu de l'image
+      // Crée et affiche l'aperçu de l'image
       const image = new Image();
       image.src = e.target.result;
       image.id = "image-preview";
@@ -195,10 +205,3 @@ document.getElementById("file-upload").addEventListener("change", function () {
     console.error("Type de fichier non pris en charge ou aucun fichier sélectionné.");
   }
 });
-
-//Change la couleur du bouton Valider lorsqu'il est cliqué
-  const submitButton = document.getElementById("submit-photo");
-  submitButton.addEventListener("click", function () {
-    submitButton.style.backgroundColor = "#1d6154";
-  });
-

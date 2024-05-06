@@ -33,9 +33,9 @@
         <ul>
           <li><a href="./index.html">projets</a></li>
           <li><a href="#">contact</a></li>
-          <li id="loginItem" class="show"><a id="loginLink" href="./login.html">login</a></li>
+          <li id="loginItem" class="show"><a href="./login.html">login</a></li>
           <li id="logoutItem" class="hide">
-            <a id="logoutLink" href="./login.html" onclick="logout()">logout</a>
+            <a href="./login.html" onclick="logout()">logout</a>
           </li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
@@ -73,16 +73,10 @@
         </div>
         <!------------------------------------------------------- HTML Modale --------------------------------------------------->
         <!----------------------- Modale Page 1 : Suppression de projets existants ---------------------------->
-        <div
-          id="modal1"
-          class="modal"
-          role="dialog"
-          aria-labelledby="titlemodal1 titlemodal2 close-modal"
-          style="display: none"
-        >
+        <div id="modal1" class="modal" style="display: none">
           <div class="modal-wrapper js-modal-stop">
             <div class="modal-header">
-              <button id="button-back" class="button-back" style="visibility: hidden">
+              <button id="button-back" class="button-back">
                 <i class="fas fa-arrow-left"></i>
               </button>
               <button id="close-modal" class="js-modal-close">
@@ -105,10 +99,8 @@
                   <i class="fa-regular fa-image"></i>
                 </div>
 
-                <label id="button-upload-photo" for="file-upload" style="cursor: pointer">
-                  + Ajouter photo
-                </label>
-                <input type="file" id="file-upload" style="display: none" accept="image/*" />
+                <label id="button-upload-photo" for="file-upload"> + Ajouter photo </label>
+                <input type="file" id="file-upload" accept="image/*"/>
                 <p class="file-types">jpg, png : 4mo max</p>
                 <div id="image-preview"></div>
               </div>
@@ -116,7 +108,7 @@
                 <div class="input">
                   <div class="input-group">
                     <label for="photo-title">Titre</label>
-                    <input type="text" id="photo-title" name="photo-title" />
+                    <input type="text" id="photo-title" name="photo-title"/>
                   </div>
                   <div class="input-group">
                     <label for="photo-category">Catégorie</label>

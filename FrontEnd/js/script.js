@@ -32,13 +32,16 @@ async function getWorks(categoryId = 0) {
       const figure = document.createElement("figure");
       figure.setAttribute("data-id", work.id);
 
+      // Crée un élément HTML "img" pour chaque work pour la galerie principale.
       const img = document.createElement("img");
       img.setAttribute("src", work.imageUrl);
       img.setAttribute("alt", work.title);
 
+      // Crée un élément HTML "figcaption" pour chaque work pour la galerie principale.
       const figcaption = document.createElement("figcaption");
       figcaption.innerText = work.title;
 
+      // Ajoute une image et une légende à l'élément 'figure', puis insère cette figure dans la galerie pour affichage dans l'UI.
       figure.appendChild(img);
       figure.appendChild(figcaption);
       gallery.appendChild(figure);
@@ -88,7 +91,7 @@ async function deleteWork(workId) {
       const elementToRemove = document.querySelector(`figure[data-id="${workId}"]`);
       const gallery = document.querySelector(".gallery");
       const galleryImg = gallery.querySelector(`figure[data-id="${workId}"]`);
-      
+
       if (elementToRemove) {
         elementToRemove.remove(); // Retire l'élément du DOM.
         galleryImg.remove(); // Retire l'élément du DOM.
@@ -108,21 +111,25 @@ async function filterButtons() {
     const response = await fetch("http://localhost:5678/api/categories");
     const categories = await response.json();
 
-    // Création et affichage des boutons de filtrage
-    const portfolioSection = document.getElementById("portfolio");
-    const title = portfolioSection.querySelector("h2");
+    // Création du conteneur et positionnement des boutons de filtrage
     const buttonsContainer = document.createElement("div");
     buttonsContainer.setAttribute("class", "filter-buttons");
+    const portfolioSection = document.getElementById("portfolio");
+    const title = portfolioSection.querySelector("h2");
 
-    // Créé le bouton "Tous" avec un id de 0
+    // Créé le bouton option "Tous" avec un id de 0
     const allButton = document.createElement("button");
     allButton.innerText = "Tous";
+    allButton.classList.add("active");
     allButton.setAttribute("data-category-id", 0);
     allButton.addEventListener("click", function () {
+      buttonsContainer.querySelectorAll("button").forEach((btn) => btn.classList.remove("active"));
+      allButton.classList.add("active");
       getWorks(0); // 0 pour afficher toutes les works sans filtrage
     });
     buttonsContainer.appendChild(allButton);
 
+    // Création d'un bouton pour chaque catégorie
     for (let i = 0; i < categories.length; i++) {
       const category = categories[i]; // Obtient la catégorie actuelle dans la boucle
 
@@ -132,7 +139,11 @@ async function filterButtons() {
       button.setAttribute("data-category-id", category.id); // Définit un attribut "data-category-id" avec l'ID de la catégorie
 
       // Ajoute un gestionnaire d'événements "click" au bouton
-      button.addEventListener("click", function () {
+      button.addEventListener("click", function (e) {
+        buttonsContainer
+          .querySelectorAll("button")
+          .forEach((btn) => btn.classList.remove("active"));
+        e.target.classList.add("active");
         getWorks(category.id); // Appelle getWorks avec l'ID de la catégorie lorsque le bouton est cliqué
       });
 
