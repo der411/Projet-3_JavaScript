@@ -31,8 +31,7 @@ if (modal) {
 
 // Fonction pour fermer la modale
 function closeModal(e) {
-  console.log("Fermeture de la modale demandée");
-  if (modal === null) return;
+  if (modal === null) return; // Sécurité contre les appels inatendus
   e.preventDefault();
   modal.style.display = "none";
   modal.removeEventListener("click", closeModal);
@@ -60,6 +59,14 @@ function showGalleryView(e) {
   document.getElementById("gallery-view").style.display = "block";
   document.getElementById("button-back").style.visibility = "hidden";
 }
+//Affichage de la deuxième vue(ajout de photo) lors du clic sur le bouton "Ajouter une photo"
+document.getElementById("button-add-photo").addEventListener("click", () => {
+  showAddPhotoView();
+});
+//Affichage de la première vue(galerie) lors de l'ouverture de la modale
+document.getElementById("close-modal").addEventListener("click", showGalleryView);
+//Affichage de la première vue(galerie) lors du clic sur le bouton "Retour"
+document.getElementById("button-back").addEventListener("click", showGalleryView);
 
 // Fonction asynchrone pour récupérer les catégories
 async function getCategories() {
@@ -99,7 +106,6 @@ async function getCategories() {
 }
 // Appel la fonction getCategories au chargement de la page
 window.onload = getCategories;
-
 
 // Fonction asynchrone pour ajouter un work
 async function addWork(e) {
@@ -160,15 +166,6 @@ async function addWork(e) {
 }
 
 //--------------------------------------- Gestionnaires d'événements pour les vues -----------------------------------//
-
-//Affichage de la deuxième vue(ajout de photo) lors du clic sur le bouton "Ajouter une photo"
-document.getElementById("button-add-photo").addEventListener("click", () => {
-  showAddPhotoView();
-}); 
-//Affichage de la première vue(galerie) lors de l'ouverture de la modale
-document.getElementById("close-modal").addEventListener("click", showGalleryView);
-//Affichage de la première vue(galerie) lors du clic sur le bouton "Retour"
-document.getElementById("button-back").addEventListener("click", showGalleryView);
 
 //Remplace la zone upload-area par l'aperçu de l'image sélectionnée
 document.getElementById("file-upload").addEventListener("change", function () {
