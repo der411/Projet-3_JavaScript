@@ -146,10 +146,6 @@ async function addWork(e) {
         submitButton.style.backgroundColor = "#a7a7a7";
       }, 2000);
 
-      uploadIcon.style.display = "block";
-      addButton.style.display = "block";
-      fileTypeText.style.display = "block";
-
       getWorks();
     } else {
       console.error("Erreur lors de l'ajout du work", result);
@@ -157,7 +153,10 @@ async function addWork(e) {
   } catch (error) {
     console.error("Erreur lors de la connexion à l'API", error);
   }
-
+  // Réaffiche les éléments de la zone d'ajout image
+  uploadIcon.style.display = "block";
+  addButton.style.display = "block";
+  fileTypeText.style.display = "block";
   // Réinitialise les champs de formulaire après l'envoi de la requête
   document.getElementById("photo-title").value = "";
   document.getElementById("file-upload").value = "";
@@ -175,7 +174,7 @@ document.getElementById("file-upload").addEventListener("change", function () {
   imagePreview.innerHTML = "";
 
   if (file && file.type.startsWith("image/")) {
-    const reader = new FileReader();
+    const reader = new FileReader(); // Crée un objet FileReader
     reader.onload = function (e) {
       // Masque les éléments non nécessaires
       uploadIcon.style.display = "none";
@@ -183,7 +182,7 @@ document.getElementById("file-upload").addEventListener("change", function () {
       fileTypeText.style.display = "none";
 
       // Crée et affiche l'aperçu de l'image
-      const image = new Image();
+      const image = new Image(); // ou document.createElement('img');
       image.src = e.target.result;
       image.id = "image-preview";
       image.alt = "Aperçu de l'image";

@@ -46,6 +46,8 @@ async function getWorks(categoryId = 0) {
       figure.appendChild(figcaption);
       gallery.appendChild(figure);
 
+      //---------Partie création des works modale---------//
+
       // Création et ajout à la galerie modal sans légende
       const figureModal = document.createElement("figure");
       figureModal.setAttribute("data-id", work.id);
@@ -54,18 +56,19 @@ async function getWorks(categoryId = 0) {
       imgModal.setAttribute("src", work.imageUrl);
       imgModal.setAttribute("alt", work.title);
 
+      
+      //---------Partie suppression des works modale---------//
+
       // Création du bouton qui contiendra l'icône
       const deleteButton = document.createElement("button");
-      deleteButton.setAttribute("type", "button");
-      deleteButton.classList.add("btn", "delete-button", "js-modal-stop");
+      deleteButton.classList.add("delete-button");
       deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
 
-      deleteButton.onclick = function (event) {
-        event.preventDefault();
-        event.stopPropagation();
+      deleteButton.addEventListener("click", function (e) {
+        e.preventDefault();
         deleteWork(work.id);
-        console.log("Clic sur l’icône de suppression traité pour workId:", work.id);
-      };
+      });
+      
 
       figureModal.appendChild(imgModal);
       figureModal.appendChild(deleteButton);
