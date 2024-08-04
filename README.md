@@ -7,11 +7,11 @@ L'application est une plateforme de gestion de galerie d'art en ligne, conçue p
 
 # Installation 🔧
 1. Clonez le dépôt :
-   git clone git@github.com:der411/Projet-3_javascript_Portfolio-architecte-sophie-bluel.git
+   ```git clone git@github.com:der411/Projet-3_javascript_Portfolio-architecte-sophie-bluel.git```
 2. Installez les dépendances :
-   npm install
+   ```npm install```
 3. Démarrez l'application :
-   npm start
+   ```npm start```
 
 # Fonctionnalités
 - Gestion des utilisateurs : Connexion des administrateurs avec authentification.
