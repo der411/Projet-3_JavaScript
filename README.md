@@ -7,36 +7,42 @@ L'application est une plateforme de gestion de galerie d'art en ligne, conçue p
 
 # Installation 🔧
 1. Clonez le dépôt :
-   ```git clone git@github.com:der411/Projet-3_javascript_Portfolio-architecte-sophie-bluel.git```
-2. Installez les dépendances :
-   ```npm install```
-3. Démarrez l'application :
-   ```npm start```
+   ```sh
+   git clone git@github.com:der411/Projet-3_JavaScript.git
+   ```
+3. Installez les dépendances :
+   ```sh
+   npm install
+   ```
+5. Démarrez l'application :
+   ```sh
+   npm start
+   ```
 
 # Fonctionnalités
-- Gestion des utilisateurs : Connexion des administrateurs avec authentification.
-- Galerie dynamique : Récupération des œuvres depuis le back-end et affichage dynamique.
-- Filtres de recherche : Filtrage des œuvres par catégorie.
-- Modale d'administration : Ajout, modification et suppression des œuvres via une interface modale.
-- Gestion des erreurs : Affichage des messages d'erreur pour les actions non autorisées ou les formulaires incomplets.
-- 
+- **Gestion des utilisateurs :** Connexion des administrateurs avec authentification.
+- **Galerie dynamique :** Récupération des œuvres depuis le back-end et affichage dynamique.
+- **Filtres de recherche :** Filtrage des œuvres par catégorie.
+- **Modale d'administration :** Ajout, modification et suppression des œuvres via une interface modale.
+- **Gestion des erreurs :** Affichage des messages d'erreur pour les actions non autorisées ou les formulaires incomplets.
+  
 # Technologies Utilisées 🚀
-- JavaScript : Pour la logique front-end et back-end.
-- Node.js : Pour le serveur back-end.
-- HTML/CSS : Pour la structure et le style de l'interface utilisateur.
-- Postman/Swagger : Pour tester les API et explorer la documentation.
-- 
+- **JavaScript :** Pour la logique front-end et back-end.
+- **Node.js :** Pour le serveur back-end.
+- **HTML/CSS :** Pour la structure et le style de l'interface utilisateur.
+- **Postman/Swagger :** Pour tester les API et explorer la documentation.
+  
 # Contraintes Techniques et Fonctionnelles
 - **Gestion de la modale** :
-- Création et destruction dynamiques de la fenêtre modale pour éviter les duplications dans le DOM.
-- Possibilité de fermer la modale en cliquant sur une croix ou en dehors.
+  - Création et destruction dynamiques de la fenêtre modale pour éviter les duplications dans le DOM.
+  - Possibilité de fermer la modale en cliquant sur une croix ou en dehors.
 - **Suppression d'œuvres** :
-- Les œuvres peuvent être supprimées via un appel API et le DOM est mis à jour en conséquence sans rechargement de la page.
+  - Les œuvres peuvent être supprimées via un appel API et le DOM est mis à jour en conséquence sans rechargement de la page.
 - **Ajout d'œuvres** :
-- Envoi d'un nouveau projet via le formulaire intégré à la modale.
-- Vérification des données avant envoi et gestion des erreurs.
+  - Envoi d'un nouveau projet via le formulaire intégré à la modale.
+  - Vérification des données avant envoi et gestion des erreurs.
 - **Réactivité** :
-- Le site est responsive et s'adapte aux différentes tailles d'écran (desktop, tablette, mobile).
+  - Le site est responsive et s'adapte aux différentes tailles d'écran (desktop, tablette, mobile).
 
 # Information pour lancer le code ❗
  - Lancer le backend depuis votre terminal en suivant les instruction du fichier ReadMe.
