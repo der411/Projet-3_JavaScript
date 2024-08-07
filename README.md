@@ -2,6 +2,8 @@
 
 L'application est une plateforme de gestion de galerie d'art en ligne, conçue pour permettre aux administrateurs de facilement gérer et afficher des œuvres d'art. Elle offre des fonctionnalités telles que l'authentification des administrateurs, l'ajout, la modification et la suppression d'œuvres, ainsi qu'un affichage dynamique des projets. L'interface inclut également des filtres de recherche pour faciliter la navigation parmi les œuvres.
 
+Pour ce projet, je développe uniquement la partie front-end, le back-end est fournit. 
+
 # Aperçu 🎨
 [![Aperçu](https://live.staticflickr.com/65535/53899087157_d2b67e4920_n.jpg)](https://flic.kr/p/2q7SUNa)
 
@@ -41,8 +43,6 @@ L'application est une plateforme de gestion de galerie d'art en ligne, conçue p
 - **Ajout d'œuvres** :
   - Envoi d'un nouveau projet via le formulaire intégré à la modale.
   - Vérification des données avant envoi et gestion des erreurs.
-- **Réactivité** :
-  - Le site est responsive et s'adapte aux différentes tailles d'écran (desktop, tablette, mobile).
 
 # Information pour lancer le code ❗
  - Lancer le backend depuis votre terminal en suivant les instruction du fichier ReadMe.
